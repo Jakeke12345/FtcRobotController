@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.teamcalamari.lib.Hardware.Devices;
 
 import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.BNO055IMUNew;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
@@ -13,23 +15,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Quaternion;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
-public class GenericIMU implements com.qualcomm.robotcore.hardware.IMU {
+public class GenericIMU implements IMU {
     private final com.qualcomm.robotcore.hardware.IMU imu;
-    public final IMUType type;
-    public enum IMUType{
-        BHI260, BNO055;
-
-        public Class<?> imuClass(){
-            switch (this){
-                case BNO055:
-                    return BNO055IMU.class;
-                case BHI260:
-                    return BHI260IMU.class;
-                default:
-                    return null;
-            }
-        }
-    }
+    public Class<? extends IMU> type;
 
     public enum IMUDirection {
         UP,
@@ -52,9 +40,9 @@ public class GenericIMU implements com.qualcomm.robotcore.hardware.IMU {
         public IMUDirection usbFacing;
     }
 
-    public GenericIMU(IMUType type, HardwareMap hw, String imuLabel){
+    public GenericIMU(Class<? extends IMU> type, HardwareMap hw, String imuLabel){
+        this.imu = hw.get(type, imuLabel);
         this.type = type;
-        this.imu = (com.qualcomm.robotcore.hardware.IMU) hw.get(type.imuClass(), imuLabel);
     }
 
     // Default IMU init

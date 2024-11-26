@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.teamcalamari.test;
 
+import com.qualcomm.hardware.bosch.BHI260IMU;
+import com.qualcomm.hardware.bosch.BNO055IMUNew;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.teamcalamari.lib.Auto.Odometry.OC3_deadwheel;
@@ -25,7 +27,7 @@ public class SimpleMecanumBot extends MecanumBot {
             frontRightMotor="frontright";
         }});
 
-        imu = new GenericIMU(GenericIMU.IMUType.BHI260, hardwareMap, "imu");
+        imu = new GenericIMU(BHI260IMU.class, hardwareMap, "imu");
         deadWheel = new OC3_deadwheel(wheelMotors.get(0), wheelMotors.get(1), wheelMotors.get(2), 0, 0, 0);
     }
 

@@ -50,7 +50,7 @@ public class OC3_deadwheel extends Odometry {
 
     public Position getPosition() {
         // Set up variables for algo
-        double inchesPerTick = 1/ticks.ticksPerInch(false);
+        double inchesPerTick = 1; // /ticks.ticksPerInch(false);
         Motor right = this.right;
         Motor left = this.left;
         Motor back = this.back;

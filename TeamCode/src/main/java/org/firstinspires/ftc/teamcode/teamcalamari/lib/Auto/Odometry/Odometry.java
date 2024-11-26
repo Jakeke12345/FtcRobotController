@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.teamcalamari.lib.Measurements.Angle;
  */
 public abstract class Odometry {
     //unsupported exceptions DON'T EXIST HERE!!!!!!!!!!!!!
-    public Ticks ticks;
+    //public Ticks ticks;
     public abstract void startTracking();
     /*public abstract Position getPosition();*/
     public abstract Angle getAngle();
@@ -19,6 +19,6 @@ public abstract class Odometry {
      * @param gearRatio
      */
     public void setTicks(double ticksPerRev, double wheelDiameter, double gearRatio){
-        this.ticks = new Ticks(ticksPerRev, wheelDiameter, gearRatio);
+        //this.ticks = new Ticks(ticksPerRev, wheelDiameter, gearRatio);
     }
 }
